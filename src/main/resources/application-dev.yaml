@@ -1,0 +1,8 @@
+spring:
+  jpa:
+    # Show SQL
+    showSql: true
+    properties:
+      hibernate:
+        # Beautify SQL
+        format_sql: true

@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle12cDialect
+        ddlAuto: none
+
+  datasource:
+    url: jdbc:oracle:thin:@//localhost:1521/XE
+    username: XXX
+    password: xxx
+    driverClassName: oracle.jdbc.OracleDriver

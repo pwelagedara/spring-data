@@ -1,0 +1,34 @@
+# Create bank table
+databaseChangeLog:
+    - property:
+        name: autoIncrement
+        value: true
+        dbms: mysql
+    - changeSet:
+        id: 1_0_0_0
+        author: pubuduwelagedara
+        changes:
+            - createTable:
+                tableName: bank
+                columns:
+                    - column:
+                        name: id
+                        type: int
+                        constraints:
+                            primaryKey: true
+                            nullable: false
+                        autoIncrement: ${autoIncrement}
+                    - column:
+                        name: name
+                        type: varchar(255)
+                        constraints:
+                            nullable: false
+    - changeSet:
+        id: 1_0_0_1
+        author: pubuduwelagedara
+        dbms: h2,postgresql
+        changes:
+            - createSequence:
+                sequenceName: seq_bank_id
+                startValue: 1
+                incrementBy: 5

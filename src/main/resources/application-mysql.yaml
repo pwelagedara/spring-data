@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        # Dialect
+        dialect: org.hibernate.dialect.MySQL57Dialect
+        # None by Default
+        ddlAuto: none
+    # To override the Primary Key Generation Strategy for MySQL
+    mapping-resources:
+      - db/orm/mysql-orm.xml
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/users?useSSL=false
+    username: root
+    password: admin
+    driverClassName: com.mysql.jdbc.Driver

@@ -1,0 +1,47 @@
+# Create branch table
+databaseChangeLog:
+    - property:
+        name: autoIncrement
+        value: true
+        dbms: mysql
+    - changeSet:
+        id: 1_1_0_0
+        author: pubuduwelagedara
+        changes:
+            - createTable:
+                tableName: branch
+                columns:
+                    - column:
+                        name: id
+                        type: int
+                        constraints:
+                            primaryKey: true
+                            nullable: false
+                        autoIncrement: ${autoIncrement}
+                    - column:
+                        name: name
+                        type: varchar(255)
+                        constraints:
+                            nullable: false
+                    - column:
+                        name: bank_id
+                        type: int
+                        constraints:
+                            nullable: false
+                            foreignKeyName: fk_branch_bank
+                            references: bank(id)
+                            deleteCascade: true
+                    - column:
+                        name: routing_number # https://www.usbank.com/bank-accounts/checking-accounts/checking-customer-resources/aba-routing-number.html
+                        type: varchar(9)
+                        constraints:
+                            nullable: false
+    - changeSet:
+        id: 1_1_0_1
+        author: pubuduwelagedara
+        dbms: h2,postgresql
+        changes:
+            - createSequence:
+                sequenceName: seq_branch_id
+                startValue: 1
+                incrementBy: 5

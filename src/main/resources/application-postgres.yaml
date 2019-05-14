@@ -1,0 +1,20 @@
+# Exec into Docker Container and run "psql" commands to connect to Database.
+# Try "psql --help" for Command Options
+spring:
+  jpa:
+    properties:
+      hibernate:
+        # https://docs.jboss.org/hibernate/orm/5.0/javadocs/org/hibernate/dialect/package-summary.html
+        dialect: org.hibernate.dialect.PostgreSQL94Dialect
+        ddl-auto: none # This is none by default and we do not need to use this because we are using Liquibase for Database Initialization.https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html
+        # To remove java.sql.SQLFeatureNotSupportedException: Method org.postgresql.jdbc.PgConnection.createClob() in PostgreSQL
+        # https://stackoverflow.com/questions/49110818/method-org-postgresql-jdbc-pgconnection-createclob-is-not-yet-implemented
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+  datasource:
+    url: jdbc:postgresql://localhost:5442/users
+    username: postgres
+    password: admin
+    driverClassName: org.postgresql.Driver
